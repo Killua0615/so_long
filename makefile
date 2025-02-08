@@ -9,7 +9,8 @@ SOURCES     := arr.c \
                movement.c \
                utilities.c \
                arr_free_and_error.c \
-               map_ad.c
+               count_map.c \
+               check_map.c
 
 SOURCES     := $(addprefix sources/, $(SOURCES))
 

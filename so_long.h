@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 12:07:39 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 13:15:00 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ typedef struct s_game
     int     move_count;
 }   t_game;
 
-/* 関数プロトタイプ。map_ad.c 等で使う */
-char *get_line_no_newline(int fd);
+// count_map
 int count_map(t_game *game, int fd);
+
+// check_map
 int check_map(t_game *game);
 
 // free
