@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 19:35:24 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:45:57 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ typedef struct s_game
 	int		move_count;
 }			t_game;
 
-// typedef struct s_counts
-// {
-// 	int		p;
-// 	int		e;
-// 	int		c;
-// }			t_counts;
+typedef struct s_counts
+{
+	int		p;
+	int		e;
+	int		c;
+}			t_counts;
 
 // count_map
 int			count_map(t_game *game, int fd);
