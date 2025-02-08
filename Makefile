@@ -30,7 +30,7 @@ FTPRINTF    := $(FTPRINTFDIR)/libftprintf.a
 FTPRINTF_REPO := https://github.com/Killua0615/ft_printf.git
 
 CC          := cc
-CFLAGS      := -Wall -Wextra -Werror -fsanitize=address
+CFLAGS      := -Wall -Wextra -Werror
 
 ifeq ($(UNAME), Linux)
   CFLAGS  += -I$(MLXDIR)

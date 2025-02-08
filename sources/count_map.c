@@ -6,7 +6,7 @@
 /*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:43:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 19:33:50 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:13:48 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,15 @@ static int	read_lines_loop(t_game *game, int fd)
 	while (line)
 	{
 		if (!process_line(game, line, i))
+		{
+			while (i > 0)
+			{
+				--i;
+				free(game->map.grid[i]);
+				game->map.grid[i] = NULL;
+			}
 			return (0);
+		}
 		i++;
 		line = get_next_line(fd);
 	}
@@ -102,6 +110,10 @@ int	count_map(t_game *game, int fd)
 	if (!allocate_grid(game, max_lines))
 		return (1);
 	if (!read_lines_loop(game, fd))
+	{
+		free(game->map.grid);
+		game->map.grid = NULL;
 		return (1);
+	}
 	return (0);
 }

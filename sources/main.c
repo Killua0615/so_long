@@ -6,7 +6,7 @@
 /*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:50:36 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 18:51:48 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:16:25 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	game.move_count = 0;
+	game.map.grid = NULL;
 	if (ac != 2)
 		return (ft_error("Need only one argument"));
 	fd = open(av[1], O_RDONLY);
@@ -102,11 +103,17 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	if (count_map(&game, fd) != 0)
+	{
+		close(fd);
 		return (1);
+	}
 	close(fd);
 	if (check_map(&game) != 0)
+	{
+		if (game.map.grid)
+			arr_free(game.map.grid);
 		return (1);
-	close(fd);
+	}
 	if (!collect_map(&game, game.map.width, game.map.height))
 		finish_game(&game);
 	set_map(&game);
