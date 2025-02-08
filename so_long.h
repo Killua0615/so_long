@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 21:45:57 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 22:19:24 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,12 @@ int			finds_player(t_map *map);
 void		player_move(t_game *game, int dx, int dy);
 int			on_keypress(int key, t_game *game);
 
-// utils
+//arr
 char		**ft_arr_dup(char **arr);
+int init_game(int ac, char **av, t_game *game);
+int	check_file_extension(char *file);
+
+// utils
 int			ft_error(char *message);
 int			ft_strlen_line(char *str);
 void		*ft_calloc(size_t nmemb, size_t size);

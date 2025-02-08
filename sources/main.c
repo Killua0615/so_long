@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:50:36 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 20:16:25 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/08 22:18:19 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,35 +87,13 @@ int	collect_map(t_game *game, int width, int height)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	int		fd;
-	t_game	game;
+	t_game game;
 
-	game.move_count = 0;
-	game.map.grid = NULL;
-	if (ac != 2)
-		return (ft_error("Need only one argument"));
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_error("Failed to open file!");
-		return (0);
-	}
-	if (count_map(&game, fd) != 0)
-	{
-		close(fd);
+	if (!init_game(ac, av, &game))
 		return (1);
-	}
-	close(fd);
-	if (check_map(&game) != 0)
-	{
-		if (game.map.grid)
-			arr_free(game.map.grid);
-		return (1);
-	}
-	if (!collect_map(&game, game.map.width, game.map.height))
-		finish_game(&game);
+
 	set_map(&game);
 	mlx_hook(game.win, 2, 1L << 0, on_keypress, &game);
 	mlx_hook(game.win, 17, 0, finish_game, &game);
