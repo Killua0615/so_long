@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:43:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 22:01:41 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 23:28:43 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ static int	allocate_grid(t_game *game, int max_lines)
 	return (1);
 }
 
-static void	adjust_line_len(char *line, int *length)
+static void	adjust_line_len(char *line, int *len)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 		i++;
-	*length = i;
-	if (*length > 0 && line[*length - 1] == '\n')
+	*len = i;
+	while (*len > 0 && (line[*len - 1] == '\n' || line[*len - 1] == '\r'))
 	{
-		line[*length - 1] = '\0';
-		(*length)--;
+		line[*len - 1] = '\0';
+		(*len)--;
 	}
 }
 
@@ -95,7 +95,7 @@ static int	read_lines_loop(t_game *game, int fd)
 			}
 			return (0);
 		}
-		i++;
+		++i;
 		line = get_next_line(fd);
 	}
 	game->map.grid[i] = NULL;

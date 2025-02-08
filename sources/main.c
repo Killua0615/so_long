@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:50:36 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 22:18:19 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 22:23:21 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,12 @@ int	collect_map(t_game *game, int width, int height)
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
 	if (!init_game(ac, av, &game))
 		return (1);
-
 	set_map(&game);
 	mlx_hook(game.win, 2, 1L << 0, on_keypress, &game);
 	mlx_hook(game.win, 17, 0, finish_game, &game);
