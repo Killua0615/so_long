@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 11:03:16 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 11:19:20 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	update_current_cell(int x, int y, t_game *game)
 {
 	if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'P')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x
+		mlx_put_image_to_window(game->mlx, game->win, game->img_0, x
 			* TILE_SIZE, y * TILE_SIZE);
 	else if (game->map.grid[y][x] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x
+		mlx_put_image_to_window(game->mlx, game->win, game->img_e, x
 			* TILE_SIZE, y * TILE_SIZE);
 }
 
@@ -76,7 +76,7 @@ void	player_movement(t_game *game, int dx, int dy)
 	game->move_count++;
 	print_moved(game->move_count);
 	update_current_cell(game->map.player_x, game->map.player_y, game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img_player, new_x
+	mlx_put_image_to_window(game->mlx, game->win, game->img_p, new_x
 		* TILE_SIZE, new_y * TILE_SIZE);
 	game->map.player_x = new_x;
 	game->map.player_y = new_y;

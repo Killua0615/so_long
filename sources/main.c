@@ -9,11 +9,11 @@ void	*get_tile_image(t_game *game, char tile)
 
 	if (!image_table['1'])
 	{
-		image_table['1'] = game->img_wall;
-		image_table['0'] = game->img_floor;
-		image_table['C'] = game->img_collectible;
-		image_table['E'] = game->img_exit;
-		image_table['P'] = game->img_player;
+		image_table['1'] = game->img_1;
+		image_table['0'] = game->img_0;
+		image_table['C'] = game->img_c;
+		image_table['E'] = game->img_e;
+		image_table['P'] = game->img_p;
 	}
 
 	if (!image_table[(int)tile])
@@ -66,24 +66,24 @@ static int	init_mlx_and_window(t_game *game)
 	return (1);
 }
 
-int	invalid_map(t_game *game, int width, int height)
+int	collect_map(t_game *game, int width, int height)
 {
 	if (!init_mlx_and_window(game))
 		return (0);
 
-	game->img_wall = mlx_xpm_file_to_image(game->mlx,
+	game->img_1 = mlx_xpm_file_to_image(game->mlx,
 		"resources/1_grass.xpm", &width, &height);
-	game->img_floor = mlx_xpm_file_to_image(game->mlx,
+	game->img_0 = mlx_xpm_file_to_image(game->mlx,
 		"resources/0_born.xpm", &width, &height);
-	game->img_collectible = mlx_xpm_file_to_image(game->mlx,
+	game->img_c = mlx_xpm_file_to_image(game->mlx,
 		"resources/c_hart.xpm", &width, &height);
-	game->img_exit = mlx_xpm_file_to_image(game->mlx,
+	game->img_e = mlx_xpm_file_to_image(game->mlx,
 		"resources/e_me.xpm", &width, &height);
-	game->img_player = mlx_xpm_file_to_image(game->mlx,
+	game->img_p = mlx_xpm_file_to_image(game->mlx,
 		"resources/p_tama.xpm", &width, &height);
 
-	if (!game->img_wall || !game->img_floor || !game->img_collectible
-		|| !game->img_exit || !game->img_player)
+	if (!game->img_1 || !game->img_0 || !game->img_c
+		|| !game->img_e || !game->img_p)
 		return (ft_error("Failed to load XPM file!"));
 
 	return (1);
@@ -110,7 +110,7 @@ int	main(int ac, char **av)
 	if (check_map(&game) != 0)
 	    return (1);
 	close(fd);
-	if (!invalid_map(&game, game.map.width, game.map.height))
+	if (!collect_map(&game, game.map.width, game.map.height))
 		finish_game(&game);
 	set_map(&game);
 	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);

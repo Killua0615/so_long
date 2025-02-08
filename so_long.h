@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 11:03:16 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 12:07:39 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ typedef struct s_game
     t_map   map;
     int     width;
     int     height;
-    void    *img_wall;
-    void    *img_floor;
-    void    *img_collectible;
-    void    *img_exit;
-    void    *img_player;
+    void    *img_1;
+    void    *img_0;
+    void    *img_c;
+    void    *img_e;
+    void    *img_p;
     int     move_count;
 }   t_game;
 
@@ -77,20 +77,19 @@ char *gnl_ft_strjoin_alloc(char *s1, size_t l1, char *s2, size_t l2);
 
 // main
 void		set_map(t_game *game);
-int	invalid_map(t_game *game, int width, int height);
+int	collect_map(t_game *game, int width, int height);
 int			cheack_map(const char *filename);
 void	*get_tile_image(t_game *game, char tile);
 
 // map
-int			count_lines(char *file);
 char		**read_map(char *file, int lines);
-int			is_valid_map(t_map *map);
 char		*get_next_line(int fd);
 
-// map_validate
-int			is_rectangular(t_map *map);
-int			is_surrounded_by_walls(t_map *map);
-int			is_enough_elements(t_map *map);
+//read_and_count
+int			read_and_count_lines(int fd, int *count_line);
+int			count_lines(char *file);
+
+// map_error
 int			walkable_path(char **map, int x, int y, t_map *m);
 int			finds_player(t_map *map);
 

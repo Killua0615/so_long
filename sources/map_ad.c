@@ -29,6 +29,7 @@ int count_map(t_game *game, int fd)
         return (1);
     }
 
+
     /* 行がある限りループ */
     while (line)
     {

@@ -6,47 +6,35 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:30 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 11:04:09 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 12:04:29 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	count_lines(char *file)
+static int	fill_map_lines(int fd, char **arr, int lines)
 {
-	int		fd;
-	char	buffer[BUFFER_SIZE];
-	ssize_t	bytes_read;
-	int		count_line;
-	ssize_t	i;
+	int		i;
+	char	*line;
 
-	fd = open(file, O_RDONLY);
-	count_line = 1;
-	bytes_read = 1;
-	while (!(fd < 0) && bytes_read > 0)
+	i = 0;
+	line = get_next_line(fd);
+	while (i < lines && line)
 	{
-		bytes_read = read(fd, buffer, sizeof(buffer));
-		i = -1;
-		while (++i < bytes_read)
-		{
-			if (count_line == INT_MAX && buffer[i] == '\n')
-				return (-2);
-			if (buffer[i] == '\n')
-				count_line++;
-		}
+		arr[i] = line;
+		i++;
+		line = get_next_line(fd);
 	}
-	close(fd);
-	if (fd < 0 || bytes_read < 0)
-		return (-1);
-	return (count_line);
+	arr[i] = NULL;
+	if (i < lines)
+		return (0);
+	return (1);
 }
 
 char	**read_map(char *file, int lines)
 {
 	int		fd;
 	char	**arr;
-	char	*line;
-	int		i;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -57,44 +45,33 @@ char	**read_map(char *file, int lines)
 		close(fd);
 		return (NULL);
 	}
-	i = 0;
-	line = get_next_line(fd);
-	while (i < lines && line)
+	if (!fill_map_lines(fd, arr, lines))
 	{
-		arr[i] = line;
-		i++;
-		line = get_next_line(fd);
+		free(arr);
+		close(fd);
+		return (NULL);
 	}
-	arr[i] = NULL;
 	close(fd);
 	return (arr);
 }
 
-int	is_valid_map(t_map *map)
-{
-	if (!is_rectangular(map))
-		return (ft_error("Map is not rectangular.\n"));
-	if (!is_surrounded_by_walls(map))
-		return (ft_error("Map is not surrounded by walls.\n"));
-	if (!is_enough_elements(map))
-		return (ft_error("Map elements are invalid.\n"));
-	if (finds_player(map) != ((map->exits) + (map->collectibles)))
-		return (ft_error("No valid path in the map.\n"));
-	return (1);
-}
-
 int	finish_game(t_game *game)
 {
-	if (game->img_wall)
-		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->img_floor)
-		mlx_destroy_image(game->mlx, game->img_floor);
-	if (game->img_collectible)
-		mlx_destroy_image(game->mlx, game->img_collectible);
-	if (game->img_exit)
-		mlx_destroy_image(game->mlx, game->img_exit);
-	if (game->img_player)
-		mlx_destroy_image(game->mlx, game->img_player);
+	int		i;
+	void	*images[5];
+
+	images[0] = game->img_1;
+	images[1] = game->img_0;
+	images[2] = game->img_c;
+	images[3] = game->img_e;
+	images[4] = game->img_p;
+
+	i = -1;
+	while (++i < 5)
+	{
+		if (images[i])
+			mlx_destroy_image(game->mlx, images[i]);
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -105,5 +82,4 @@ int	finish_game(t_game *game)
 	if (game->map.grid)
 		arr_free(game->map.grid);
 	exit(0);
-	return (0);
 }
