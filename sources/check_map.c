@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:12:52 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 21:51:32 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 21:57:44 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	parse_map_char(t_game *game, int i, int j, t_counts *cnt)
 {
-	char ch;
+	char	ch;
 
 	ch = game->map.grid[i][j];
 	if (!ft_strchr("01CEP", ch))
@@ -22,8 +22,8 @@ static int	parse_map_char(t_game *game, int i, int j, t_counts *cnt)
 		ft_error("Error\nInvalid map letter");
 		return (0);
 	}
-	if ((i == 0 || i == game->map.height - 1
-		|| j == 0 || j == game->map.width - 1) && ch != '1')
+	if ((i == 0 || i == game->map.height - 1 || j == 0 || j == game->map.width
+			- 1) && ch != '1')
 	{
 		ft_error("Error\nMap isn't be closed by walls(1)");
 		return (0);
@@ -39,8 +39,8 @@ static int	parse_map_char(t_game *game, int i, int j, t_counts *cnt)
 
 static int	scan_map_elements(t_game *game, t_counts *cnt)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < game->map.height)
