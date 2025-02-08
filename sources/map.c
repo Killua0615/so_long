@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:30 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/07 23:16:08 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 11:04:09 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,31 +83,7 @@ int	is_valid_map(t_map *map)
 	return (1);
 }
 
-// int	grid_of_the_map(char *file, t_map *map)
-// {
-// 	map->height = count_lines(file);
-// 	if (map->height == -1)
-// 		return (ft_error("Failed to open or read file."));
-// 	if (map->height == -2 || map->height <= 2)
-// 		return (ft_error("Too small or too big map!"));
-// 	map->grid = read_map(file, map->height);
-// 	if (!map->grid)
-// 		return (ft_error("Cannot read map."));
-// 	map->width = ft_strlen_line(map->grid[0]);
-// 	if (map->width == -1)
-// 	{
-// 		ft_free(map->grid);
-// 		return (ft_error("Map is too big!"));
-// 	}
-// 	if (!is_valid_map(map))
-// 	{
-// 		ft_free(map->grid);
-// 		return (0);
-// 	}
-// 	return (1);
-// }
-
-int	close_game(t_game *game)
+int	finish_game(t_game *game)
 {
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
@@ -127,7 +103,7 @@ int	close_game(t_game *game)
 		free(game->mlx);
 	}
 	if (game->map.grid)
-		ft_free(game->map.grid);
+		arr_free(game->map.grid);
 	exit(0);
 	return (0);
 }

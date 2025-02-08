@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:23 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/07 23:16:08 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 08:44:08 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ int	finds_player(t_map *map)
 	map->player_x = start_x;
 	map->player_y = start_y;
 	result = walkable_path(copied_map, start_x, start_y, map);
-	ft_free(copied_map);
+	arr_free(copied_map);
 	return (result);
 }

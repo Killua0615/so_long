@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_and_error.c                                :+:      :+:    :+:   */
+/*   arr_free_and_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-void	ft_free(char **arr)
+void	arr_free(char **arr)
 {
 	int	i;
 

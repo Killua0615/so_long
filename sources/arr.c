@@ -32,7 +32,7 @@ char	**ft_arr_dup(char **arr)
 		new_arr[j] = ft_strdup(arr[j]);
 		if (!new_arr[j])
 		{
-			ft_free(new_arr);
+			arr_free(new_arr);
 			return (NULL);
 		}
 		j++;

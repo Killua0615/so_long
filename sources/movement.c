@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/07 17:55:58 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 11:03:16 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	player_movement(t_game *game, int dx, int dy)
 	if (destination == '1')
 		return ;
 	if (destination == 'E' && game->map.collectibles == 0)
-		close_game(game);
+		finish_game(game);
 	if (destination == 'C')
 	{
 		game->map.collectibles--;
@@ -85,7 +85,7 @@ void	player_movement(t_game *game, int dx, int dy)
 int	handle_keypress(int key, t_game *game)
 {
 	if (key == KEY_ESC)
-		close_game(game);
+		finish_game(game);
 	else if (key == KEY_W || key == KEY_UP)
 		player_movement(game, 0, -1);
 	else if (key == KEY_S || key == KEY_DOWN)
