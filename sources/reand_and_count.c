@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reand_and_count.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/08 18:53:01 by nateshim          #+#    #+#             */
+/*   Updated: 2025/02/08 18:53:03 by nateshim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-int read_and_count_lines(int fd, int *count_line)
+int	read_and_count_lines(int fd, int *count_line)
 {
 	char	buffer[BUFFER_SIZE];
 	ssize_t	bytes_read;
@@ -24,7 +36,7 @@ int read_and_count_lines(int fd, int *count_line)
 	return (1);
 }
 
-int count_lines(char *file)
+int	count_lines(char *file)
 {
 	int	fd;
 	int	ret;

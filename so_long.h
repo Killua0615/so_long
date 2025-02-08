@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 13:40:11 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 19:35:24 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # endif
 
 # include "../minilibx-linux/mlx.h"
-# include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdlib.h>
@@ -38,36 +38,43 @@
 
 typedef struct s_map
 {
-    char    **grid;
-    int     width;
-    int     height;
-    int     collectibles;
-    int     exits;
-    int     players;
-    int     player_x;
-    int     player_y;
-}   t_map;
+	char	**grid;
+	int		width;
+	int		height;
+	int		collectibles;
+	int		exits;
+	int		players;
+	int		player_x;
+	int		player_y;
+}			t_map;
 
 typedef struct s_game
 {
-    void    *mlx;
-    void    *win;
-    t_map   map;
-    int     width;
-    int     height;
-    void    *img_1;
-    void    *img_0;
-    void    *img_c;
-    void    *img_e;
-    void    *img_p;
-    int     move_count;
-}   t_game;
+	void	*mlx;
+	void	*win;
+	t_map	map;
+	int		width;
+	int		height;
+	void	*img_1;
+	void	*img_0;
+	void	*img_c;
+	void	*img_e;
+	void	*img_p;
+	int		move_count;
+}			t_game;
+
+// typedef struct s_counts
+// {
+// 	int		p;
+// 	int		e;
+// 	int		c;
+// }			t_counts;
 
 // count_map
-int count_map(t_game *game, int fd);
+int			count_map(t_game *game, int fd);
 
 // check_map
-int check_map(t_game *game);
+int			check_map(t_game *game);
 
 // free
 void		arr_free(char **arr);
@@ -75,20 +82,20 @@ void		arr_free(char **arr);
 // gnl
 char		*gnl_ft_strchr(const char *str, int c);
 char		*gnl_ft_strjoin(char *s1, char *s2);
-char *gnl_ft_strjoin_alloc(char *s1, size_t l1, char *s2, size_t l2);
+char		*gnl_ft_strjoin_alloc(char *s1, size_t l1, char *s2, size_t l2);
 
 // main
 void		set_map(t_game *game);
-int	collect_map(t_game *game, int width, int height);
+int			collect_map(t_game *game, int width, int height);
 int			cheack_map(const char *filename);
-void	*get_tile_image(t_game *game, char tile);
+void		*get_tile_image(t_game *game, char tile);
 
 // map
 char		**read_map(char *file, int lines);
 char		*get_next_line(int fd);
 int			finish_game(t_game *game);
 
-//read_and_count
+// read_and_count
 int			read_and_count_lines(int fd, int *count_line);
 int			count_lines(char *file);
 

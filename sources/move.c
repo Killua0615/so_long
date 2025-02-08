@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 13:37:32 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:49:59 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void draw_cell(t_game *game, int x, int y)
+static void	draw_cell(t_game *game, int x, int y)
 {
 	if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'P')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->img_0, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_0, x
+			* TILE_SIZE, y * TILE_SIZE);
 	else if (game->map.grid[y][x] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->img_e, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_e, x
+			* TILE_SIZE, y * TILE_SIZE);
 }
 
-static void int_to_str(int move_count, char *buffer)
+static void	int_to_str(int move_count, char *buffer)
 {
 	int		i;
 	int		j;
@@ -36,7 +36,7 @@ static void int_to_str(int move_count, char *buffer)
 		buffer[i++] = (tmp_count % 10) + '0';
 		tmp_count /= 10;
 	}
-	if (i == 0) // move_countが0のとき
+	if (i == 0)
 		buffer[i++] = '0';
 	buffer[i] = '\0';
 	j = 0;
@@ -51,7 +51,7 @@ static void int_to_str(int move_count, char *buffer)
 	}
 }
 
-static void display_move_count(int move_count)
+static void	display_move_count(int move_count)
 {
 	char	buffer[12];
 
@@ -59,7 +59,7 @@ static void display_move_count(int move_count)
 	ft_printf("Moved: %s\n", buffer);
 }
 
-void player_move(t_game *game, int dx, int dy)
+void	player_move(t_game *game, int dx, int dy)
 {
 	int		new_x;
 	int		new_y;
@@ -80,13 +80,13 @@ void player_move(t_game *game, int dx, int dy)
 	game->move_count++;
 	display_move_count(game->move_count);
 	draw_cell(game, game->map.player_x, game->map.player_y);
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->img_p, new_x * TILE_SIZE, new_y * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx, game->win, game->img_p, new_x
+		* TILE_SIZE, new_y * TILE_SIZE);
 	game->map.player_x = new_x;
 	game->map.player_y = new_y;
 }
 
-int on_keypress(int key, t_game *game)
+int	on_keypress(int key, t_game *game)
 {
 	if (key == KEY_ESC)
 		finish_game(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:30 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 12:04:29 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:54:37 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	finish_game(t_game *game)
 	images[2] = game->img_c;
 	images[3] = game->img_e;
 	images[4] = game->img_p;
-
 	i = -1;
 	while (++i < 5)
 	{
