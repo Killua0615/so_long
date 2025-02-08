@@ -113,7 +113,7 @@ int	main(int ac, char **av)
 	if (!collect_map(&game, game.map.width, game.map.height))
 		finish_game(&game);
 	set_map(&game);
-	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);
+	mlx_hook(game.win, 2, 1L << 0, on_keypress, &game);
 	mlx_hook(game.win, 17, 0, finish_game, &game);
 	mlx_loop(game.mlx);
 	return (0);

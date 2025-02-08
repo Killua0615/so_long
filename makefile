@@ -6,7 +6,7 @@ SOURCES     := arr.c \
                main.c \
                map.c \
                map_errors.c \
-               movement.c \
+               move.c \
                utilities.c \
                arr_free_and_error.c \
                count_map.c \

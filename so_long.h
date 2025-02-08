@@ -6,7 +6,7 @@
 /*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 13:15:00 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/08 13:40:11 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int check_map(t_game *game);
 
 // free
 void		arr_free(char **arr);
+
 // gnl
 char		*gnl_ft_strchr(const char *str, int c);
 char		*gnl_ft_strjoin(char *s1, char *s2);
@@ -85,6 +86,7 @@ void	*get_tile_image(t_game *game, char tile);
 // map
 char		**read_map(char *file, int lines);
 char		*get_next_line(int fd);
+int			finish_game(t_game *game);
 
 //read_and_count
 int			read_and_count_lines(int fd, int *count_line);
@@ -94,13 +96,9 @@ int			count_lines(char *file);
 int			walkable_path(char **map, int x, int y, t_map *m);
 int			finds_player(t_map *map);
 
-// movements
-void		update_current_cell(int x, int y, t_game *game);
-void		player_movement(t_game *game, int dx, int dy);
-int			handle_keypress(int key, t_game *game);
-int			finish_game(t_game *game);
-void		print_moved(int move_count);
-void		convert_moves_to_string(int move_count, char *buffer);
+// move
+void		player_move(t_game *game, int dx, int dy);
+int			on_keypress(int key, t_game *game);
 
 // utils
 char		**ft_arr_dup(char **arr);
