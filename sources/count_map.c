@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:43:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 23:28:43 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:34:30 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,18 @@ static int	process_line(t_game *game, char *line, int index)
 	return (1);
 }
 
-static int	read_lines_loop(t_game *game, int fd)
+static int free_partial_lines(t_game *game, int *i)
+{
+	while (*i > 0)
+	{
+		--(*i);
+		free(game->map.grid[*i]);
+		game->map.grid[*i] = NULL;
+	}
+	return (0);
+}
+
+static int read_lines_loop(t_game *game, int fd)
 {
 	int		i;
 	char	*line;
@@ -86,21 +97,14 @@ static int	read_lines_loop(t_game *game, int fd)
 	while (line)
 	{
 		if (!process_line(game, line, i))
-		{
-			while (i > 0)
-			{
-				--i;
-				free(game->map.grid[i]);
-				game->map.grid[i] = NULL;
-			}
-			return (0);
-		}
-		++i;
+			return (free_partial_lines(game, &i));
+		i++;
 		line = get_next_line(fd);
 	}
 	game->map.grid[i] = NULL;
 	return (1);
 }
+
 
 int	count_map(t_game *game, int fd)
 {
