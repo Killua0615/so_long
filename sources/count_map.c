@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   count_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:43:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/09 14:34:30 by natsumi          ###   ########.fr       */
+/*   Updated: 2025/02/09 14:43:27 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-static int	allocate_grid(t_game *game, int max_lines)
-{
-	char	**grid;
-
-	grid = malloc(sizeof(char *) * (max_lines + 1));
-	if (!grid)
-	{
-		ft_error("Error\nFailed to allocate memory for grid");
-		free(grid);
-		return (0);
-	}
-	game->map.grid = grid;
-	game->map.height = 0;
-	game->map.width = 0;
-	return (1);
-}
 
 static void	adjust_line_len(char *line, int *len)
 {
@@ -71,7 +54,7 @@ static int	process_line(t_game *game, char *line, int index)
 	return (1);
 }
 
-static int free_partial_lines(t_game *game, int *i)
+static int	free_partial_lines(t_game *game, int *i)
 {
 	while (*i > 0)
 	{
@@ -82,7 +65,7 @@ static int free_partial_lines(t_game *game, int *i)
 	return (0);
 }
 
-static int read_lines_loop(t_game *game, int fd)
+static int	read_lines_loop(t_game *game, int fd)
 {
 	int		i;
 	char	*line;
@@ -104,7 +87,6 @@ static int read_lines_loop(t_game *game, int fd)
 	game->map.grid[i] = NULL;
 	return (1);
 }
-
 
 int	count_map(t_game *game, int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:43:24 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 22:23:38 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:44:40 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int			on_keypress(int key, t_game *game);
 // arr
 char		**ft_arr_dup(char **arr);
 int			init_game(int ac, char **av, t_game *game);
-int			check_file_extension(char *file);
+int			allocate_grid(t_game *game, int max_lines);
 
 // utils
 int			ft_error(char *message);

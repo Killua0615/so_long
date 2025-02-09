@@ -6,7 +6,7 @@
 /*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 22:23:53 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 23:17:48 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:45:20 by nateshim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int	init_game(int ac, char **av, t_game *game)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return (ft_error("Failed to open file!"));
-	// close(fd);
-	// if (!check_file_extension(av[1]))
-	// 	return (0);
-	// fd = open(av[1], O_RDONLY);
 	if (count_map(game, fd) != 0)
 	{
 		close(fd);
@@ -73,16 +69,19 @@ int	init_game(int ac, char **av, t_game *game)
 	return (1);
 }
 
-// int	check_file_extension(char *file)
-// {
-// 	int	fd;
+int	allocate_grid(t_game *game, int max_lines)
+{
+	char	**grid;
 
-// 	fd = open(file, O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		ft_error("Failed to open file!");
-// 		return (0);
-// 	}
-// 	close(fd);
-// 	return (1);
-// }
+	grid = malloc(sizeof(char *) * (max_lines + 1));
+	if (!grid)
+	{
+		ft_error("Error\nFailed to allocate memory for grid");
+		free(grid);
+		return (0);
+	}
+	game->map.grid = grid;
+	game->map.height = 0;
+	game->map.width = 0;
+	return (1);
+}
