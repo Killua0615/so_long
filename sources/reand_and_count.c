@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   reand_and_count.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:53:01 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 18:53:03 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:13:25 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+//ファイルの行数を数えるファイル
 
 int	read_and_count_lines(int fd, int *count_line)
 {

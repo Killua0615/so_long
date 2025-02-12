@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nateshim <nateshim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natsumi <natsumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 19:44:35 by nateshim          #+#    #+#             */
-/*   Updated: 2025/02/08 18:49:59 by nateshim         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:14:52 by natsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+// draw_cell(...): 移動前のセルの再描画をしたりする補助
 static void	draw_cell(t_game *game, int x, int y)
 {
 	if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'P')
@@ -22,6 +23,7 @@ static void	draw_cell(t_game *game, int x, int y)
 			* TILE_SIZE, y * TILE_SIZE);
 }
 
+// 移動回数を文字列に変換する
 static void	int_to_str(int move_count, char *buffer)
 {
 	int		i;
